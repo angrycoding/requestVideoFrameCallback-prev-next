@@ -1,0 +1,52 @@
+<script>
+
+	const getMediaTime = () => new Promise(resolve => {
+		const video = document.getElementsByTagName('video')[0];
+		if (!video) return;
+		video.requestVideoFrameCallback((now, metadata) => {
+			resolve(metadata.mediaTime);
+		})
+	});
+
+	window.jumpPrevFrame = async () => {
+		const video = document.getElementsByTagName('video')[0];
+		if (!video) return;
+
+		video.currentTime += 1;
+		video.currentTime -= 1;
+		const firstMediaTime = await getMediaTime();
+
+		
+		for (;;) {
+			video.currentTime -= 0.01;
+			if ((await getMediaTime()) !== firstMediaTime) {
+				break;
+			}
+		}
+		
+	}
+
+	window.jumpNextFrame = async () => {
+		const video = document.getElementsByTagName('video')[0];
+		if (!video) return;
+
+		
+
+		video.currentTime += 1;
+		video.currentTime -= 1;
+		const firstMediaTime = await getMediaTime();
+
+		for (;;) {
+			video.currentTime += 0.01;
+			if ((await getMediaTime()) !== firstMediaTime) break;
+		}
+
+
+	}
+</script>
+
+<video src="./25fps.mp4" muted="true" playsInline="true" preload="auto"></video>
+<div>
+	<button onclick="jumpPrevFrame()">PREV_FRAME</button>
+	<button onclick="jumpNextFrame()">NEXT_FRAME</button>
+</div>
