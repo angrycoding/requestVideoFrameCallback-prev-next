@@ -5,6 +5,8 @@ There is relatively new feature: https://web.dev/requestvideoframecallback-rvfc/
 
 https://github.com/angrycoding/requestVideoFrameCallback-prev-next/assets/895042/49d1dabc-699e-4613-bc29-a11cf5082082
 
+https://youtu.be/CL2WYYlS4Ao
+
 Idea is: **requestVideoFrameCallback** callback is called with two arguments: first one is some kind of timestamp, and second one is some kind
 of meta information about current video's position https://wicg.github.io/video-rvfc/#dictdef-videoframemetadata
 
